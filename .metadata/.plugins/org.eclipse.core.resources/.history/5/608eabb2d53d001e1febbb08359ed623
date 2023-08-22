@@ -1,0 +1,11 @@
+package com.app.DTO;
+
+
+
+public class gymdto {
+
+	private String gymName;
+	
+	private String location;
+	
+}

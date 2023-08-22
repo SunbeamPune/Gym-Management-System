@@ -1,0 +1,12 @@
+package com.app.Repository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+
+import com.app.Entities.BaseEntity;
+
+
+public interface BaseRepository extends JpaRepository<BaseEntity, Integer> {
+
+	BaseEntity findBaseEntityByEmailAndPassword(String email,String password);
+}

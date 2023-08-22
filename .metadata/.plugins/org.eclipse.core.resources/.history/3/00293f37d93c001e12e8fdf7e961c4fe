@@ -1,0 +1,9 @@
+package com.app.Entities;
+
+public class Manager {
+
+	private Integer id;
+	private String firstName;
+	private String lastName;
+	private 
+}

@@ -1,0 +1,53 @@
+package com.app.Services;
+
+import java.util.List;
+
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
+
+import javax.transaction.Transactional;
+
+import com.app.CustomExceptions.ResourceNotFoundException;
+import com.app.Entities.Feedback;
+import com.app.Entities.Gym;
+import com.app.Entities.Member;
+import com.app.Repository.GymRepository;
+import com.app.Repository.MemberRepository;
+
+@Service
+@Transactional
+public class MemberService {
+
+	@Autowired
+	private MemberRepository memberRepository;
+	
+	@Autowired
+	private GymRepository gymRepository;
+	
+	
+	public Member addNewMember( Member member){
+		Member m=memberRepository.save(member);
+		return m;
+	}
+	
+	public List<Gym> selectGym()
+	{
+		return gymRepository.findAll();
+	}
+	
+	public Member addGym( Gym g, Integer memberId){
+		Member m=memberRepository.findById(memberId).orElseThrow(()->new ResourceNotFoundException("Gym not found!"));
+			m.setOwner(g.getOwner());
+			return memberRepository.save(m);
+	}
+	
+	public Member givefeedback(@RequestBody Feedback f,Integer memberId){
+		Member m=memberRepository.findById(memberId).orElseThrow(()->new ResourceNotFoundException("Gym not found!"));
+		m.setFeedback(f);
+		return memberRepository.save(m);
+		
+	}
+}

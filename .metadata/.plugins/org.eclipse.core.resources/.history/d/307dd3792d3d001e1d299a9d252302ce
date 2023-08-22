@@ -1,0 +1,28 @@
+package com.app.Entities;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+
+import javax.persistence.OneToMany;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+
+@Entity
+@DiscriminatorValue(value = "trainer")
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@ToString
+public class Trainer {
+	
+	@OneToMany(mappedBy = "trainer")
+	private List<GymClass> classes=new ArrayList<>();
+}

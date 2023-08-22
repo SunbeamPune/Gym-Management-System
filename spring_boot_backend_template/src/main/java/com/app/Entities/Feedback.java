@@ -1,0 +1,22 @@
+package com.app.Entities;
+
+
+import javax.persistence.Embeddable;
+
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Embeddable
+@Getter
+@Setter
+@NoArgsConstructor
+public class Feedback {
+
+
+	private String feedback;
+	
+	private Integer rating;
+
+	private Boolean status=false;
+}

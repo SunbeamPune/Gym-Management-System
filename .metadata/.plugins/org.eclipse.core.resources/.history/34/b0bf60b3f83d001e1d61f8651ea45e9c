@@ -1,0 +1,16 @@
+package com.app.Repository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+
+
+import com.app.Entities.BaseEntity;
+
+
+public interface BaseRepository extends JpaRepository<BaseEntity, Integer> {
+
+	BaseEntity findBaseEntityByEmailAndPassword(String email,String password);
+	
+	@Query("SELECT e.role FROM BaseEntity e WHERE id=?1")
+	String findRoleById(Integer id);
+}

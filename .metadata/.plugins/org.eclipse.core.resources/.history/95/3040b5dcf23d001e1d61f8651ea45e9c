@@ -1,0 +1,54 @@
+package com.app.Services;
+
+import java.util.Optional;
+
+import javax.transaction.Transactional;
+
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
+
+import com.app.CustomExceptions.ResourceNotFoundException;
+import com.app.DTO.Gymdto;
+import com.app.Entities.Gym;
+import com.app.Entities.GymClass;
+import com.app.Entities.Owner;
+import com.app.Repository.GymRepository;
+import com.app.Repository.OwnerRepository;
+
+@Service
+@Transactional
+public class OwnerService {
+
+@Autowired
+private OwnerRepository ownerRepository;
+@Autowired
+private ModelMapper mapper;
+@Autowired
+private GymRepository gymRepository;
+
+
+	public Owner addNewOwner( Owner owner){
+		return ownerRepository.save(owner);
+	}
+
+	
+	public Gym addGym(Gymdto g,Integer id)
+	{
+		Owner o=ownerRepository.findById(id).orElseThrow(()->new ResourceNotFoundException("Owner does not exist!!!"));
+		Gym temp=mapper.map(g, Gym.class);
+		o.addGym(temp);
+		return gymRepository.save(temp);
+	}
+	
+	public GymClass addGymClass(GymClass gc,Integer id)
+	{
+		Owner o=ownerRepository.findById(id).orElseThrow(()->new ResourceNotFoundException("Owner does not exist!!!"));
+		GymClass gcc=o.addGymClass(gc);
+		ownerRepository.save(o);
+		return gcc;
+	}
+}

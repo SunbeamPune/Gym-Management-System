@@ -1,0 +1,31 @@
+package com.app.Controller;
+
+import javax.validation.Valid;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.app.DTO.SignInRequest;
+import com.app.Entities.Member;
+import com.app.Repository.MemberRepository;
+
+@RestController
+@RequestMapping("/auth")
+public class SignInController {
+
+	@Autowired
+	private MemberRepository memberDao;
+	
+	@PostMapping("/member")
+	public ResponseEntity<?> signIn(@RequestBody @Valid SignInRequest request)
+	{
+		Member m=memberDao.findMemberByEmailAndPassword(request.getEmail(), request.getPassword());
+		
+		return new ResponseEntity<>(m, HttpStatus.OK);
+	}
+}

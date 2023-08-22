@@ -1,0 +1,69 @@
+package com.app.Entities;
+
+import javax.persistence.CascadeType;
+
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Embedded;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+import javax.persistence.OneToOne;
+
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+
+@Entity
+@DiscriminatorValue(value = "member")
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@ToString
+public class Member extends BaseEntity{
+
+	
+	@JsonIgnore
+	@Embedded
+	private Feedback feedback;
+	
+	@JsonIgnore
+	@OneToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+	@JoinColumn(name = "transaction_id")
+	private SubscriptionData subscriptionData;
+	
+	@ManyToOne
+	@JsonIgnore
+	private Owner owner;
+	
+	
+	@ManyToOne
+	@JsonIgnore
+	private GymClass gymClass;
+	
+	public void addGymClass(GymClass g)
+	{
+		if(this.gymClass==null)
+		{
+			setGymClass(g);
+			g.getMembersInGym().add(this);
+		}
+		else System.err.println("gym already assigned!");
+	}
+	public void removeGymClass()
+	{
+		if(this.gymClass!=null)
+		{
+		this.gymClass.getMembersInGym().remove(this);
+		this.setGymClass(null);
+		}
+		else System.err.println("please add gym first before remove!!!");
+	}
+}

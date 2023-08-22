@@ -1,0 +1,25 @@
+package com.app.Services;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RequestBody;
+
+import com.app.Entities.Member;
+import com.app.Repository.GymRepository;
+import com.app.Repository.MemberRepository;
+
+public class MemberService {
+
+	@Autowired
+	private MemberRepository memberRepository;
+	
+	@Autowired
+	private GymRepository gymRepository;
+	
+	
+	public Member addNewMember(@RequestBody Member member){
+		Member m=memberRepository.save(member);
+		return m;
+	}
+}

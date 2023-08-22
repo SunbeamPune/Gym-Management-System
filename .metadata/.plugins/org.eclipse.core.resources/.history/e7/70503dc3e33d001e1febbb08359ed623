@@ -1,0 +1,47 @@
+package com.app.Controller;
+
+import java.util.Optional;
+
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.app.DTO.Gymdto;
+import com.app.Entities.Gym;
+import com.app.Entities.Owner;
+import com.app.Repository.OwnerRepository;
+
+@RestController
+@RequestMapping("/owner")
+public class OwnerController {
+
+	@Autowired
+	private OwnerRepository ownerRepository;
+	
+	@Autowired
+	private ModelMapper mapper;
+	
+	@PostMapping("/signup")
+	public ResponseEntity<?> addNewMember(@RequestBody Owner owner){
+		Owner a=ownerRepository.save(owner);
+		return new ResponseEntity<>(a,HttpStatus.ACCEPTED);
+	}
+	
+	
+	@PostMapping("/creategym/{ownerId}")
+	public ResponseEntity<?> addGym(@RequestBody Gymdto g,@PathVariable Integer ownerId){
+		Optional<Owner> o=ownerRepository.findById(ownerId);
+		Gym temp=mapper.map(g, Gym.class);
+		o.ifPresent(i->{
+			i.addGym(temp);
+		});
+		
+		return new ResponseEntity<>(o,HttpStatus.ACCEPTED);
+	}
+}

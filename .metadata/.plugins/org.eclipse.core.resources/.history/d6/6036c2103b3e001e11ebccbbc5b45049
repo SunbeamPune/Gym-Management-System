@@ -1,0 +1,15 @@
+package com.app.Services;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.app.Repository.GymRepository;
+import com.app.Repository.MemberRepository;
+
+public class MemberService {
+
+	@Autowired
+	private MemberRepository memberRepository;
+	
+	@Autowired
+	private GymRepository gymRepository;
+}

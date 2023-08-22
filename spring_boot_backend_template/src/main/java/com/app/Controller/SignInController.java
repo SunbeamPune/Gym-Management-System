@@ -1,0 +1,38 @@
+package com.app.Controller;
+
+import javax.validation.Valid;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.app.DTO.SignInRequest;
+import com.app.Entities.BaseEntity;
+import com.app.Repository.BaseRepository;
+
+@RestController
+@RequestMapping("/auth")
+public class SignInController {
+
+	@Autowired
+	private BaseRepository baseDao;
+	
+	@PostMapping
+	public ResponseEntity<?> signIn(@RequestBody @Valid SignInRequest request)
+	{
+		BaseEntity b=baseDao.findBaseEntityByEmailAndPassword(request.getEmail(), request.getPassword());
+		
+		return new ResponseEntity<>(b, HttpStatus.OK);
+	}
+	
+	@GetMapping("/role/{baseid}")
+	public  ResponseEntity<?> getRole(@PathVariable Integer baseid){
+		return new ResponseEntity<>(baseDao.findRoleById(baseid), HttpStatus.OK);
+	}
+}

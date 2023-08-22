@@ -1,0 +1,38 @@
+package com.app.Entities;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+
+import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+
+@Entity
+@DiscriminatorValue(value = "trainer")
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@ToString
+public class Trainer extends BaseEntity{
+	
+	@JsonIgnore
+	@OneToMany(mappedBy = "trainer")
+	private List<GymClass> classes=new ArrayList<>();
+	
+	@JsonIgnore
+	public GymClass addGymClass(GymClass g) {
+		this.classes.add(g);
+		g.setTrainer(this);
+		return g;
+	}
+}

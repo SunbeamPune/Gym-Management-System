@@ -1,0 +1,52 @@
+package com.app.Entities;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+
+@Entity
+@DiscriminatorValue(value = "admin")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+public class Admin extends BaseEntity{
+	
+
+	@JsonIgnore
+	@OneToMany
+	@JoinColumn(name = "classes")
+	private List<GymClass> classes=new ArrayList<>();
+	@JsonIgnore
+	@OneToMany
+	@JoinColumn(name="members")
+	private List<Member> members=new ArrayList<>(); 
+	
+	@JsonIgnore
+	@OneToOne(mappedBy = "admin")
+	private Gym gym;
+	
+	public void addGym(Gym g)
+	{
+		if(this.gym==null && g.getAdmin()!=null)
+		{
+			this.gym=g;
+			g.setAdmin(this);
+		}
+		else System.err.println("gym already alloted Or Admin already exists for selected gym!!!");
+	}
+}

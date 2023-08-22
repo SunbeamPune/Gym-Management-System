@@ -1,0 +1,12 @@
+package com.app.Entities;
+
+import javax.persistence.Embeddable;
+
+@Embeddable
+public class Feedback {
+
+
+	private String feedback;
+	
+	private Boolean status;
+}
