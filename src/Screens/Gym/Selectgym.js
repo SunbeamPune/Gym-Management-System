@@ -1,7 +1,10 @@
 import { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import d1 from '../../Images/d1.jpeg';
-import Card from "../Body/Card";
+
+import Carrd from "../startups/Carrd";
+import { Grid } from "@mui/material";
+import DenseAppBar from "./Denseappbar";
 function Selectgym() {
   const [emps, setEmps] = useState([]);
   
@@ -45,23 +48,25 @@ var Select1 = (selgym) => {
   });
   history.push(`/selectgymclass`);
 };
+
   return (
-    <>
+    <  >
      
-        <hr></hr>
-        <div style={{flexDirection:"row"}}>
+        <DenseAppBar name="Select Gym"/>
+     <Grid container padding={10} gap={17} justify="center"  >
           
               {emps.map((gym) => {
                 
                 
                 return (
-                    <button onClick={()=>Select1(gym)}>
-                      <Card key={gym.id} image={d1} name={gym.gymName} location={gym.location} owner={JSON.stringify(gym.owner).split('"')[3]} />
-                      </button>
+                    
+                
+                      <Carrd key={gym.id} func={()=>Select1(gym)} img={d1} name={gym.gymName} location={gym.location} owner={JSON.stringify(gym.owner)} />
+                     
                 );
               })}
            
-        </div>
+        </Grid>
       
     </>
   );

@@ -3,32 +3,34 @@ import React from 'react';
 import Login from './startups/Login';
 import Register from './startups/Register';
 
-import Home from './startups/Home'
+import Landing from './startups/Landing'
 import Gym from './Gym/Selectgym';
 import Gymclass from './Gym/Selectgymclass';
 import Equipments from './Admin/Equipments';
 import Pay from './Gym/Payment';
+import Owner from './Admin/Owner';
 
 
 function Controller(){
 
 return(
-    <>
+    
          
     <Router>
       <Switch>
-        <Route exact path="/" component={Home}/>
-
+        <Route exact path="/" component={Landing}/>
+        <Route exact path="/login" component={Login}/>
         <Route exact path="/register" component={Register}/>
     
         <Route exact path="/equipments" component={Equipments}/>
         <Route exact path="/gym" component={Gym}/>
         <Route exact path="/selectgymclass" component={Gymclass}/>
         <Route exact path="/pay" component={Pay}/>
+        <Route exact path="/owner" component={Owner}/>
       </Switch>
     </Router>
          
-            </>
+            
 )
 
 }

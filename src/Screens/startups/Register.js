@@ -55,33 +55,33 @@ export default function Register()
     return(
          
 
-          <div className="logdiv" style={{height:'585px'}} >
-            <legend style={{color:'white' ,marginLeft:'265px'}}>Register</legend>
+          <div className="logdiv" style={{height:'685px'}} >
+            <h3 style={{color:'white' ,marginLeft:'255px'}}>Register</h3>
 
             <div className="fontstyle">First-Name:</div>
-           <input type="text" className="form-control logclass" value={fname} onChange={(e)=>{setfname(e.target.value)}}  />
-            
+           <input type="text" className="form-control logclass" placeholder="enter frist name" value={fname} onChange={(e)=>{setfname(e.target.value)}}  />
+            <br/>
 
             <div className="fontstyle">Last-Name:</div>
-           <input type="text" className="form-control logclass" value={lname} onChange={(e)=>{setlname(e.target.value)}} />
-            
+           <input type="text" className="form-control logclass" placeholder="enter last name" value={lname} onChange={(e)=>{setlname(e.target.value)}} />
+           <br/>
             
                <div className="fontstyle">Email:</div>
-           <input type="text" className="form-control logclass" value={email} onChange={(e)=>{setemail(e.target.value)}} />
-            
+           <input type="text" className="form-control logclass" placeholder="enter email" value={email} onChange={(e)=>{setemail(e.target.value)}} />
+           <br/>
             
            <div className="fontstyle">Password:</div>
-             <input type="password" className=" form-control logclass"  value={passwd} onChange={(e)=>{setpasswd(e.target.value)}} />
-
+             <input type="password" className=" form-control logclass" placeholder="enter password" value={passwd} onChange={(e)=>{setpasswd(e.target.value)}} />
+             <br/>
           <div className="fontstyle">Phone:</div>
-           <input type="text" className="form-control logclass" value={phone} onChange={(e)=>{setphone(e.target.value)}} />
-            
+           <input type="text" className="form-control logclass" placeholder="enter phone no" value={phone} onChange={(e)=>{setphone(e.target.value)}} />
+           <br/>
             <div className="fontstyle">Address:</div>
-           <input type="text" className="form-control logclass" value={address} onChange={(e)=>{setaddress(e.target.value)}} />
-           
+           <input type="text" className="form-control logclass"  placeholder="enter addrerss" value={address} onChange={(e)=>{setaddress(e.target.value)}} />
+           <br/>
             <div className="fontstyle">Date of birth:</div>
-           <input type="date" className="form-control logclass" value={dob} onChange={(e)=>{setdob(e.target.value)}} />
-
+           <input type="date" className="form-control logclass" placeholder="enter date of birth" value={dob} onChange={(e)=>{setdob(e.target.value)}} />
+           <br/>
            <div className="fontstyle">Role:</div>
            <select  className="form-control logclass"
            value={role}
@@ -92,7 +92,7 @@ export default function Register()
               <option value="trainer">Trainer</option>
               <option value="staff">Staff</option>
           </select>
-          
+          <br/><br/>
             <center><button onClick={chk} className="btn btn-danger">Submit</button></center>
             </div>
             
