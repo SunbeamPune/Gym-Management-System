@@ -1,4 +1,4 @@
-import { TextField } from "@mui/material"
+import { Alert, TextField } from "@mui/material"
 import { useState } from "react";
 
 
@@ -14,7 +14,7 @@ export default function Createtrainer()
   const[address,setaddress]=useState("");
   const[lastname,setlastname]=useState("");
   const[dob,setdob]=useState("");
-    
+  const[sucessful,setsuccesful]=useState(false);
   const requestparams={
     method:'POST',
     headers:{
@@ -40,6 +40,7 @@ export default function Createtrainer()
     try {
       const data=await result.json();
     console.log(data);
+    setsuccesful(true);
       
     } catch (error) {
       console.log('wrong data !!');
@@ -52,6 +53,7 @@ export default function Createtrainer()
         <center>
            
         <div style={{backgroundColor:"black",height:"550px",width:"600px"}}>
+        {sucessful && <Alert severity="success">Trainer created successfully!!,please click on next</Alert>}
         <h1 style={{color:"red"}}>CREATE GYM TRAINER</h1>
         <TextField style={{width:"50%",marginTop:"10px"}} onChange={(e)=>{setname(e.target.value)}} label="frist name" id="1" />
        <br></br>

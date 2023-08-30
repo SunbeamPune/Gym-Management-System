@@ -15,6 +15,23 @@ import AccountCircle from '@mui/icons-material/AccountCircle';
 import MailIcon from '@mui/icons-material/Mail';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import MoreIcon from '@mui/icons-material/MoreVert';
+import FitnessCenterIcon from '@mui/icons-material/FitnessCenter';
+import PersonAddIcon from '@mui/icons-material/PersonAdd';
+import AssignmentIndIcon from '@mui/icons-material/AssignmentInd';
+import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+
+import Drawer from '@mui/material/Drawer';
+
+import List from '@mui/material/List';
+
+import ListItem from '@mui/material/ListItem';
+import ListItemButton from '@mui/material/ListItemButton';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import ListItemText from '@mui/material/ListItemText';
+
+
+
 
 
 const Search = styled('div')(({ theme }) => ({
@@ -57,7 +74,8 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-export default function PrimarySearchAppBar() {
+ export default function PrimarySearchAppBar() {
+  const history=useHistory();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
@@ -99,7 +117,7 @@ export default function PrimarySearchAppBar() {
       onClose={handleMenuClose}
     >
       <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-      <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+      <MenuItem onClick={()=>{sessionStorage.clear();   history.push("/")}}>Logout</MenuItem>
     </Menu>
   );
 
@@ -154,6 +172,73 @@ export default function PrimarySearchAppBar() {
       </MenuItem>
     </Menu>
   );
+  //========================================================
+
+
+  const [state, setState] = React.useState({
+   
+    left: false,
+    menu:false
+   
+  });
+
+
+  const toggleDrawer = (anchor, open) => (event) => {
+    if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
+      return;
+    }
+  
+    setState({ ...state, [anchor]: open });
+  };
+  const handlemenu=(var1)=>{
+    switch (var1) {
+      case 0:
+        history.push("/creategymclass");
+        break;
+        case 1:
+          history.push("/createtrainer");
+          break;
+          case 2:
+        history.push("/updateowner");
+        break;
+        case 3:
+        history.push("/showallmembers");
+        break;
+      default:
+        break;
+    }
+  }
+
+  const list = (anchor) => (
+    <Box
+      sx={{ width: anchor === 'top' || anchor === 'bottom' ? 'auto' : 250 }}
+      role="presentation"
+      onClick={toggleDrawer(anchor, false)}
+      onKeyDown={toggleDrawer(anchor, false)}
+    >
+      <List>
+        {['Create Class', 'Create Trainer', 'Update Profile', 'Show all members'].map((text, index) => (
+          <ListItem key={text} disablePadding>
+            <ListItemButton  onClick={()=>{handlemenu(index)}} >
+              <ListItemIcon>
+                {index === 0 && <FitnessCenterIcon/>}
+                {index === 1 && <PersonAddIcon/>}
+                {index===2 && <AssignmentIndIcon/>}
+                {index===3 && <PeopleAltIcon/>}
+                
+              </ListItemIcon>
+              <ListItemText primary={text} />
+            </ListItemButton>
+          </ListItem>
+        ))}
+      </List>
+     
+      
+    </Box>
+  );
+
+
+  //========================================================
 
   return (
     <>
@@ -167,16 +252,26 @@ export default function PrimarySearchAppBar() {
             color="inherit"
             aria-label="open drawer"
             sx={{ mr: 2 }}
+            onClick={toggleDrawer("menu", true)}
+            
           >
+            
             <MenuIcon />
           </IconButton>
+          <Drawer
+            menu={"menu"}
+            open={state["menu"]}
+            onClose={toggleDrawer("menu", false)}
+          >
+            {list("menu")}
+          </Drawer>
           <Typography
             variant="h6"
             noWrap
             component="div"
             sx={{ display: { xs: 'none', sm: 'block' } }}
           >
-            MUI
+            GMS
           </Typography>
           <Search>
             <SearchIconWrapper>
@@ -234,6 +329,10 @@ export default function PrimarySearchAppBar() {
     </Box>
     
     </div>
+    {/*==============================================*/}
+
+    {/*==============================================*/}
     </>
   );
 }
+

@@ -9,6 +9,9 @@ import Gymclass from './Gym/Selectgymclass';
 import Equipments from './Admin/Equipments';
 import Pay from './Gym/Payment';
 import Owner from './Admin/Owner';
+import Creategymclass from './Admin/Creategymclass';
+import Createtrainer from './Admin/Createtrainer';
+import Updateowner from './Admin/Updateowner';
 
 
 function Controller(){
@@ -27,6 +30,10 @@ return(
         <Route exact path="/selectgymclass" component={Gymclass}/>
         <Route exact path="/pay" component={Pay}/>
         <Route exact path="/owner" component={Owner}/>
+        <Route exact path="/creategymclass" component={Creategymclass}/>
+        <Route exact path="/createtrainer" component={Createtrainer}/>
+        <Route exact path="/updateowner" component={Updateowner}/>
+        
       </Switch>
     </Router>
          

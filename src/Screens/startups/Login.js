@@ -5,6 +5,7 @@ import jwtDecode from "jwt-decode";
 
 
 
+
 export default function Login()
 {
 
@@ -43,7 +44,7 @@ export default function Login()
       else if(token.authorities==="ROLE_MEMBER")
       history.push('/gym');
     } catch (error) {
-      console.log('wrong email or password !!');
+      Alert('wrong email or password !!');
     }
  
   };

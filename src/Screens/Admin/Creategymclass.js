@@ -1,4 +1,4 @@
-import { TextField } from "@mui/material"
+import { Alert, TextField } from "@mui/material"
 import { useState } from "react";
 
 
@@ -11,7 +11,7 @@ export default function Creategymclass()
     const[startdate,setstartdate]=useState("");
     const[capacity,setcapacity]=useState("");
   const[duration,setduration]=useState("");
-    
+  const[sucessful,setsuccesful]=useState(false);
   const requestparams={
     method:'POST',
     headers:{
@@ -35,6 +35,7 @@ export default function Creategymclass()
       const data=await result.json();
     console.log(data);
     sessionStorage.setItem("tid",data.id);
+    setsuccesful(true);
       
     } catch (error) {
       console.log('wrong data !!');
@@ -45,7 +46,8 @@ export default function Creategymclass()
     return(
 
         <center>
-           
+            {sucessful && <Alert severity="success">Class created successfully!,please click on next</Alert>}
+            
         <div style={{backgroundColor:"black",height:"400px",width:"600px"}}>
         <h1 style={{color:"red"}}>CREATE GYM CLASS</h1>
         <TextField style={{width:"50%",marginTop:"10px"}} onChange={(e)=>{setname(e.target.value)}} label="Class name" id="1" />

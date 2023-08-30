@@ -1,4 +1,4 @@
-import { TextField } from "@mui/material"
+import { Alert, TextField } from "@mui/material"
 import { useState } from "react";
 
 
@@ -9,6 +9,7 @@ export default function Creategym()
 
     const[name,setname]=useState("");
   const[location,setlocation]=useState("");
+  const[sucessful,setsuccesful]=useState(false);
     
   const requestparams={
     method:'POST',
@@ -30,6 +31,8 @@ export default function Creategym()
     try {
       const data=await result.json();
     console.log(data);
+      setsuccesful(true);
+    
       
     } catch (error) {
       console.log('wrong data !!');
@@ -42,6 +45,7 @@ export default function Creategym()
         <center>
            
         <div style={{backgroundColor:"black",height:"300px",width:"600px"}}>
+        {sucessful && <Alert severity="success">gym created successfully,please click on next</Alert>}
         <h1 style={{color:"red"}}>CREATE GYM</h1>
         <TextField style={{width:"50%",marginTop:"10px"}} onChange={(e)=>{setname(e.target.value)}} label="gym name" id="1" />
         <br></br>
@@ -51,6 +55,7 @@ export default function Creategym()
         <br></br>
         
         <button  className="btn btn-danger" onClick={chk}>Submit</button>
+       
         </div>
         </center>
     )
