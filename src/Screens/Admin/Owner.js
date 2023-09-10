@@ -1,4 +1,4 @@
-import { Box, Grid, Paper, TextField } from "@mui/material";
+import { Box, Grid, Paper } from "@mui/material";
 import HorizontalLinearStepper from "./HorizontalLinearStepper";
 import PrimarySearchAppBar from "./OwnerHome";
 import { useEffect, useState } from "react";
@@ -19,6 +19,7 @@ function Owner(){
       catch(er){alert("please complete registration!!!")}
     }
     getter();
+    // eslint-disable-next-line
   },[]) 
 
   
@@ -38,24 +39,25 @@ function Owner(){
         
        {gym.gymName && 
        //=================
-       
-       <Box sx={{ flexGrow: 1, }} bgcolor={"black"} height={"300px"}>
-        <center>
+       <center>
+       <Box sx={{ flexGrow: 1, }} bgcolor={"black"} height={"300px"} width={"800px"}>
+        
         <h2 style={{color:"red",fontStyle:"italic"}}>Your Gym Information</h2>
-       <Grid container spacing={3} marginLeft={"200px"} >
+       <Grid container spacing={3} marginLeft={"100px"} >
          <Grid item xs={12} md={8}>
           <h4>Name of gym:</h4>
-           <Item>{gym.gymName}</Item>
+           <Item><h4>{gym.gymName}</h4></Item>
          </Grid>
          <br/>
          
          <Grid item xs={6} md={8}>
          <h4>Location of gym:</h4>
-           <Item>{gym.location}</Item>
+           <Item><h4>{gym.location}</h4></Item>
          </Grid>
        </Grid>
-       </center>
+       
      </Box>
+     </center>
        //=================
        
       }

@@ -29,7 +29,8 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import Showmembers from './Showmembers';
+import { FeedTwoTone, Feedback, Payment } from '@mui/icons-material';
+
 
 
 
@@ -75,7 +76,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
- export default function PrimarySearchAppBar() {
+ export default function Navbarformember() {
   const history=useHistory();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
@@ -194,16 +195,19 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   const handlemenu=(var1)=>{
     switch (var1) {
       case 0:
-        history.push("/creategymclass");
+        history.push("/selectgym");
         break;
         case 1:
-          history.push("/createtrainer");
+          history.push("/selectgymclass");
           break;
           case 2:
-        history.push("/updateowner");
+        history.push("/updatemember");
         break;
         case 3:
-        history.push("/showallmembers");
+        history.push("/pay");
+        break;
+        case 4:
+        history.push("/feedback");
         break;
       default:
         break;
@@ -218,15 +222,16 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
       onKeyDown={toggleDrawer(anchor, false)}
     >
       <List>
-        {['Create Class', 'Create Trainer', 'Update Profile', 'Show all members'].map((text, index) => (
+        {['Select gym', 'Select Gym class', 'Update Profile', 'pay','feedback'].map((text, index) => (
           <ListItem key={text} disablePadding>
             <ListItemButton  onClick={()=>{handlemenu(index)}} >
               <ListItemIcon>
                 {index === 0 && <FitnessCenterIcon/>}
-                {index === 1 && <PersonAddIcon/>}
+                {index === 1 && <FitnessCenterIcon/>}
                 {index===2 && <AssignmentIndIcon/>}
-                {index===3 && <PeopleAltIcon/>}
-                {index===4 && <Showmembers/>}
+                {index===3 && <Payment/>}
+                {index===4 && <Feedback/>}
+                
                 
               </ListItemIcon>
               <ListItemText primary={text} />

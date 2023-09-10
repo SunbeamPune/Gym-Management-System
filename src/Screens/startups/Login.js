@@ -42,9 +42,9 @@ export default function Login()
       if(token.authorities==="ROLE_OWNER")
       history.push("/owner");
       else if(token.authorities==="ROLE_MEMBER")
-      history.push('/gym');
+      history.push('/memberhome');
     } catch (error) {
-      Alert('wrong email or password !!');
+      alert('wrong email or password !!');
     }
  
   };

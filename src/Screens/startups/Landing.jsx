@@ -4,6 +4,7 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import Carrd from './Carrd';
 
 import Grid from '@mui/material/Grid';
+import { FitnessCenter } from "@mui/icons-material";
 
 
 export default function CarouselComponent() {
@@ -23,12 +24,12 @@ export default function CarouselComponent() {
                 <span className="icon-bar"></span>
                 <span className="icon-bar"></span>
               </button>
-              <a className="navbar-brand" href="#">Title</a>
+              <a className="navbar-brand" href="#"><FitnessCenter />GMS</a>
             </div>
             <div className="collapse navbar-collapse navbar-ex1-collapse">
               <ul className="nav navbar-nav">
-                <li className=""><a href="register">Register</a></li>
-                <li><a href="login">Login</a></li>
+              <h5> <li className=""><a href="register">Register</a></li></h5>
+              <h5><li><a href="login">Login</a></li></h5>
               </ul>
               <form className="navbar-form navbar-left" role="search" style={{marginTop:"-10px"}}>
                 <div className="form-group" style={{marginTop:"13px"}}>
@@ -67,7 +68,7 @@ export default function CarouselComponent() {
                         <div className="container">
                             <div className="carousel-caption" style={{position:'absolute',bottom:'70%',zIndex:'20',textShadow:'0 1px rgba(0,0,0,6)'}}>
                                 <h1 style={{color:"black",fontStyle:'oblique',fontFamily:"serif"}}>50% OFF</h1>
-                                <p style={{color:"black"}}>ON FRIST GYM BOOKING GET A CHANCE TO HAVE 50% DISCOUNT </p>
+                                <h4 style={{color:"black"}}>ON FRIST GYM BOOKING GET A CHANCE TO HAVE 50% DISCOUNT </h4>
                                 <p><a className="btn btn-lg btn-primary" href="#" role="button">Sign up today</a></p>
                             </div>
                         </div>
@@ -76,8 +77,8 @@ export default function CarouselComponent() {
                     <img data-src="holder.js/900x500/auto/#777:#7a7a7a/text:First slide" alt="First slide" src='../IMG5.jpg' style={{minHeight:'100px'}}/>
                         <div className="container">
                             <div className="carousel-caption" style={{position:'absolute',bottom:'70%',zIndex:'20',textShadow:'0 1px rgba(0,0,0,6)'}}>
-                                <h1>Another example headline.</h1>
-                                <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+                                <h1>Tone your muscles like a PRO!</h1>
+                                <h4>Our gyms are will help you gain and tone muscles in short time.</h4>
                                 <p><a className="btn btn-lg btn-primary" href="#" role="button">Learn more</a></p>
                             </div>
                         </div>
@@ -87,8 +88,8 @@ export default function CarouselComponent() {
                         <div className="container">
                             <div className="carousel-caption" style={{position:'absolute',bottom:'70%',zIndex:'20',textShadow:'0 1px rgba(0,0,0,6)'}}>
                                 <h1>One more for good measure.</h1>
-                                <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-                                <p><a className="btn btn-lg btn-primary" href="#" role="button">Browse gallery</a></p>
+                                <h4>Read reviews from our gym Members</h4>
+                                <p><a className="btn btn-lg btn-primary" href="#" role="button">See Reviews</a></p>
                             </div>
                         </div>
                     </div>

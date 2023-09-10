@@ -6,7 +6,7 @@ import { useHistory } from "react-router-dom";
   
 
 
-export default function Updateowner(props)
+export default function Updatemember(props)
 {
 
     const[name,setname]=useState("");
@@ -41,7 +41,7 @@ export default function Updateowner(props)
   },[])
   var chk1=async ()=>{
 
-    const result1 =await fetch(`http://localhost:8080/owner/update/${sessionStorage.getItem("id")}`,{headers:{
+    const result1 =await fetch(`http://localhost:8080/member/update/${sessionStorage.getItem("id")}`,{headers:{
     'Authorization':`Bearer ${sessionStorage.getItem('jwt')}`
   }});
     try {
@@ -65,12 +65,12 @@ export default function Updateowner(props)
 
   var chk=async ()=>{
 
-    const result =await fetch(`http://localhost:8080/owner/update`,requestparams);
+    const result =await fetch(`http://localhost:8080/member/update`,requestparams);
     try {
       const data=await result.json();
     console.log(data);
     alert("update sucessful");
-    history.push("/memberhome");
+    history.push("/owner");
       
     } catch (error) {
       console.log('wrong data !!');

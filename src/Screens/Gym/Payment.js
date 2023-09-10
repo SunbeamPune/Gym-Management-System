@@ -34,7 +34,7 @@ export default function Pay()
         console.log(requestparams.body);
         await fetch(`http://localhost:8080/member/pay/${sessionStorage.getItem('id')}`,requestparams);
        alert("Payment Successful");
-      history.push("/");
+      history.push("/memberhome");
     } catch (error) {
       alert('something went wrong!!!');
     }

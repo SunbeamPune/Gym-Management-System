@@ -3,11 +3,11 @@ import { useHistory } from "react-router-dom";
 import d1 from '../../Images/d1.jpeg';
 
 import Carrd from "../startups/Carrd";
-import { Grid } from "@mui/material";
-import DenseAppBar from "./Denseappbar";
+import { Alert, Grid } from "@mui/material";
+
 function Selectgym() {
   const [emps, setEmps] = useState([]);
-  
+  const[sucessful,setsuccesful]=useState(false);
   const history = useHistory();
   
 
@@ -30,7 +30,7 @@ var chk=async ()=>{
   try {
     const data=await result.json();
     setEmps(data);
-    
+    setsuccesful(true);
     //history.push("/home");
   } catch (error) {
     console.log('wrong email or password !!');
@@ -39,6 +39,7 @@ var chk=async ()=>{
 };
 useEffect(() => {
   chk();
+  // eslint-disable-next-line
 }, []);
 var Select1 = (selgym) => {
   fetch(`http://localhost:8080/member/selectgym/${sessionStorage.getItem('id')}`,{
@@ -52,7 +53,9 @@ var Select1 = (selgym) => {
   return (
     <  >
      
-        <DenseAppBar name="Select Gym"/>
+       
+        
+        {sucessful && <Alert severity="success">gym Selected successfully,please click on next</Alert>}
      <Grid container padding={10} gap={17} justify="center"  >
           
               {emps.map((gym) => {

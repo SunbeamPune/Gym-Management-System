@@ -12,6 +12,11 @@ import Owner from './Admin/Owner';
 import Creategymclass from './Admin/Creategymclass';
 import Createtrainer from './Admin/Createtrainer';
 import Updateowner from './Admin/Updateowner';
+import showmembers from './Admin/Showmembers';
+
+import Memberhome from './Gym/Memberhome';
+import Updatemember from './Gym/Updatemember';
+import Feedback from './Gym/Feedback';
 
 
 function Controller(){
@@ -24,16 +29,18 @@ return(
         <Route exact path="/" component={Landing}/>
         <Route exact path="/login" component={Login}/>
         <Route exact path="/register" component={Register}/>
-    
+        <Route exact path="/memberhome" component={Memberhome}/>
         <Route exact path="/equipments" component={Equipments}/>
-        <Route exact path="/gym" component={Gym}/>
+        <Route exact path="/selectgym" component={Gym}/>
         <Route exact path="/selectgymclass" component={Gymclass}/>
         <Route exact path="/pay" component={Pay}/>
         <Route exact path="/owner" component={Owner}/>
-        <Route exact path="/creategymclass" component={Creategymclass}/>
+<Route exact path="/creategymclass" component={Creategymclass}/>
         <Route exact path="/createtrainer" component={Createtrainer}/>
         <Route exact path="/updateowner" component={Updateowner}/>
-        
+        <Route exact path="/updatemember" component={Updatemember}/>
+        <Route exact path="/showallmembers" component={showmembers}/>
+        <Route exact path="/feedback" component={Feedback}/>
       </Switch>
     </Router>
          
